@@ -54,6 +54,7 @@ def show_statistics(name):
 
 @app.route('/business/<name>/global')
 def global_statistics(name):
+    client_amount = 1
     return render_template("global.html", name=name)
 
 
@@ -67,6 +68,9 @@ def product_statistics(name):
     return render_template("product.html", name=name)
 
 
+@app.route('/test')
+def test():
+    return render_template("test.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
