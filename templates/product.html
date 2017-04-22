@@ -2,20 +2,12 @@
 {% extends 'head.html' %}
         {% block content %}
         <div class="jumbotron">
-            <h1>Client behavior analitics for {{ name }}</h1>
+            <h1>Product statistics for {{ name }}</h1>
 
         </div>
-        <div class="btn-group">
-            <a href="{{ url_for('global_statistics', name=name) }}" class="btn btn-lg btn-primary">
-                Global Statistics</a>
-            <a href="{{ url_for('client_statistics', name=name) }}" class="btn btn-lg btn-warning">
-                Client Statistics</a>
-            <a href="{{ url_for('product_statistics', name=name) }}" class="btn btn-lg btn-danger">
-                Product Statistics</a>
-        </div>
-        <div class="btn-group">
-            <a href="#" class="btn btn-lg btn-primary">
-                Add new product</a>
+         <div class="btn-group">
+            <a href="{{ url_for('show_statistics', name=name) }}" class="btn btn-lg btn-primary">
+                Back to main panel</a>
         </div>
 {#            <table class="table table-striped">#}
 {#            <thead>#}
