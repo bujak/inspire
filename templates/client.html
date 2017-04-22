@@ -1,18 +1,21 @@
 
 {% extends 'head.html' %}
 {% block head %}
-      <script type="text/javascript" src="{{ url_for('static', filename='js/three.js')}}"> </script>
+      <script type="text/javascript" src="{{ url_for('static', filename='js/four.js')}}"> </script>
 
 {% endblock %}
 
         {% block content %}
         <div class="jumbotron" style="padding-top: 0px">
-            <h1>Global statistics               <div class="btn-group">
-            <a href="{{ url_for('show_statistics', name=name) }}" class="btn btn-lg btn-primary">
+            <h1>Global statistics      {{ name }}         <div class="btn-group">
+
+            <a href="{{ url_for('show_statistics', name=name ) }}" class="btn btn-lg btn-primary">
                 Back to main panel</a>
         </div></h1>
 
         </div>
+
+
 <script type="text/javascript">
 var parsed = {{ amount | safe }};
 var arr = [];
@@ -24,16 +27,17 @@ var arr2 = [];
 for(var y in parsed2){
   arr2.push(parsed2[y]); }
 
-console.log(arr);
 </script>
-        <div id="chartContainer" style="height: 200px; width: 50%;"></div>
+
+
+        <div id="chartContainer" style="height: 300px; width: 50%;"></div>
         <table class="table table-striped">
             <thead>
               <tr>
                 <th>Nr</th>
-                <th>Date</th>
-                <th>Clients amount</th>
-                <th>Overall time </th>
+                <th>Client</th>
+                <th>Time near all products</th>
+                <th>Amount of products viewed by client</th>
 
               </tr>
             </thead>
@@ -42,21 +46,14 @@ console.log(arr);
             {% for client in clients %}
               <tr>
                 <td>{{ i }}</td>
-                <td>{{ client[0] }}</td>
-                <td>{{ client[2] }}</td>
-                <td>{{ client[1] }} min </td>
+                <td>{{ client[0] }} </td>
+                <td>{{ client[1] }} min</td>
+                <td>{{ client[2] }}  </td>
 
               </tr>
             {%  set i = i + 1 %}
             {% endfor %}
             </tbody>
         </table>
-{#
-
-
-  <canvas id="myChart"></canvas>#}
-{##}
-{#        <script src="{{ url_for('static', filename='js/chart.js') }}"></script>#}
-
 
         {% endblock %}

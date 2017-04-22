@@ -78,16 +78,21 @@ def global_statistics(name):
     amount1 = json.dumps(amount)
     time2 = json.dumps(time)
 
-    return render_template("global.html", clients=clients, amount=amount1, time=time2)
+    return render_template("global.html", name=name, clients=clients, amount=amount1, time=time2)
 
 
 @app.route('/business/<name>/client')
 def client_statistics(name):
-    clients = User.get_clients()
-    sigles = []
+    clients = User.sigle_client()
+    amount = []
+    time = []
+    for client in clients:
+        amount.append({'label': client[0], 'y': client[1]})
+        time.append({'label': client[0], 'y': client[2]})
+    amount1 = json.dumps(amount)
+    time2 = json.dumps(time)
 
-
-    return render_template("client.html", clients=clients)
+    return render_template("client.html", name=name, clients=clients, amount=amount1, time=time2)
 
 
 @app.route('/business/<name>/product')
