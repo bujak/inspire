@@ -1,7 +1,7 @@
 from model.user import User
 from model.beacon import Beacon
 import os
-
+from send_mail import send_mail
 
 from flask import Flask, render_template, request, session
 
@@ -27,11 +27,25 @@ def start():
     return
 
 
+@app.route('/<string:email>/mylist')
+def mylist(email):
+    picks = User.get_picks_by_email(email)
+    for pick in picks:
+        print(pick[0])
+    return render_template("mylist.html", picks=picks)
+
+
 @app.route('/receive', methods=["POST"])
 def receive():
     pick = request.get_json()
     Beacon.add_pick(pick["beacon"], pick["mail"])
     return render_template("index.html")
+
+
+@app.route('/<string:email>/send')
+def send(email):
+    send_mail(email)
+    return "Email send"
 
 
 if __name__ == "__main__":
