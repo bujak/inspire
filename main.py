@@ -1,6 +1,6 @@
 from model.user import User
+from model.beacon import Beacon
 import os
-import json
 
 
 from flask import Flask, render_template, request, session
@@ -30,12 +30,7 @@ def start():
 @app.route('/receive', methods=["POST"])
 def receive():
     pick = request.get_json()
-    print(pick)
-    if user:
-        user.is_beacon_in_list(id)
-    else:
-        user = User(mail)
-        user.is_beacon_in_list(id)
+    Beacon.add_pick(pick)
     return render_template("index.html")
 
 
