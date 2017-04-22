@@ -98,3 +98,4 @@ ENV/
 .idea/
 .idea
 .gitignore
+db.db
