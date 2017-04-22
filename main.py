@@ -2,9 +2,9 @@ from model.user import User
 from model.beacon import Beacon
 import os
 from send_mail import send_mail
+import json
 
-
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session,jsonify
 
 
 app = Flask(__name__)
@@ -69,15 +69,25 @@ def show_statistics(name):
 
 @app.route('/business/<name>/global')
 def global_statistics(name):
-    User.get_clients()
     clients = User.get_clients()
-    print(client_amount)
-    return render_template("global.html", clients=clients)
+    amount = []
+    time = []
+    for client in clients:
+        amount.append({'label': client[0], 'y': client[2]})
+        time.append({'label': client[0], 'y': client[1]})
+    amount1 = json.dumps(amount)
+    time2 = json.dumps(time)
+
+    return render_template("global.html", clients=clients, amount=amount1, time=time2)
 
 
 @app.route('/business/<name>/client')
 def client_statistics(name):
-    return render_template("client.html", name=name)
+    clients = User.get_clients()
+    sigles = []
+
+
+    return render_template("client.html", clients=clients)
 
 
 @app.route('/business/<name>/product')

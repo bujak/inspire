@@ -23,12 +23,15 @@ class User:
 
     @staticmethod
     def get_clients():
-        query = """SELECT day, COUNT(DISTINCT email) FROM picks GROUP BY day;"""
+        query = """SELECT day, SUM(amount), COUNT(DISTINCT email) FROM picks GROUP BY day;"""
         clients = sql.query(query)
-        print(clients[0][0])
         return clients
 
-
+    @staticmethod
+    def sigle_client():
+        query = """SELECT email, SUM(amount), COUNT(DISTINCT day) FROM picks GROUP BY email;"""
+        clients = sql.query(query)
+        return clients
 
 
 

@@ -31,5 +31,30 @@ def query(query, params=''):
         return query_result
 
 
+def query_one(query, params=''):
+    """
+    :param query: query with ?
+    :param params: list or tuple of params (replace ?)
+    :return: list of object or null
+    """
+    # query = "SELECT * FROM Users WHERE `E-mail` =? and `password`=?"
+    # params = list([login, password])
+
+    query_result = list()
+    conn = connect_db()
+    conn.row_factory = sqlite3.Row
+    c = conn.cursor()
+
+    c.execute(query, params)
+
+
+    conn.commit()
+
+    close_db(conn)
+
+    if query_result != []:
+        return query_result
+
+
 def close_db(conn):
     conn.close()
