@@ -16,10 +16,17 @@ class User:
 
     @staticmethod
     def get_picks_by_email(email):
-        query = """SELECT picks.id, picks.email, picks.amount, beacons.product FROM picks  JOIN beacons on picks.uid = beacons.uid WHERE email = ? ORDER BY picks.amount DESC """
+        query = """SELECT picks.id, picks.email, picks.amount, beacons.product FROM picks
+                  JOIN beacons on picks.uid = beacons.uid WHERE email = ? ORDER BY picks.amount DESC """
         value = [email]
         return sql.query(query, value)
 
+    @staticmethod
+    def get_clients():
+        query = """SELECT day, COUNT(DISTINCT email) FROM picks GROUP BY day;"""
+        clients = sql.query(query)
+        print(clients[0][0])
+        return clients
 
 
 

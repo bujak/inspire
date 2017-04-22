@@ -3,6 +3,7 @@ from model.beacon import Beacon
 import os
 from send_mail import send_mail
 
+
 from flask import Flask, render_template, request, redirect, url_for, session
 
 
@@ -68,8 +69,10 @@ def show_statistics(name):
 
 @app.route('/business/<name>/global')
 def global_statistics(name):
-    client_amount = 1
-    return render_template("global.html", name=name)
+    User.get_clients()
+    clients = User.get_clients()
+    print(client_amount)
+    return render_template("global.html", clients=clients)
 
 
 @app.route('/business/<name>/client')
