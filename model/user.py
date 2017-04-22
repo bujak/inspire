@@ -14,7 +14,11 @@ class User:
             user_id = sql.query(query, params)
         return user_id[0][0]
 
-
+    @staticmethod
+    def get_picks_by_email(email):
+        query = """SELECT picks.id, picks.email, picks.amount, beacons.product FROM picks  JOIN beacons on picks.uid = beacons.uid WHERE email = ? ORDER BY picks.amount DESC """
+        value = [email]
+        return sql.query(query, value)
 
 
 

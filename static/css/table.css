@@ -1,0 +1,59 @@
+.main_container {
+    font-family: 'Roboto', sans-serif;
+
+    height: auto;
+    width: 80%;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.main_container caption {
+    font-size: 200%;
+    letter-spacing: 3px;
+    text-align: left;
+
+}
+
+.main_container #add_button {
+    display: inline-block;
+    float: right;
+    padding: 1%;
+
+}
+
+.main_container table {
+
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 10px 10px;
+    width: 100%;
+
+}
+
+.main_container thead{
+    align-content: center;
+}
+.main_container thead, tr {
+
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.main_container td, .main_container th {
+    padding: 15px 15px;
+    text-align: left;
+    vertical-align: middle;
+
+}
+
+.main_container table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/*.main_container td:last-child {*/
+    /*text-align: right;*/
+    /*word-spacing: 1em;*/
+/*}*/
