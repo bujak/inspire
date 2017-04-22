@@ -1,42 +1,21 @@
 
 {% extends 'head.html' %}
-        {% block content %}
-        <div class="jumbotron">
-            <h1>Global statisctics</h1>
 
-        </div>
+
+        {% block content %}
+        <div class="jumbotron" style="height: 200px">
+            <h1>Global statistics</h1>
         <div class="btn-group">
             <a href="{{ url_for('show_statistics', name=name) }}" class="btn btn-lg btn-primary">
                 Back to main panel</a>
         </div>
+        </div>
 
-{#            <table class="table table-striped">#}
-{#            <thead>#}
-{#              <tr>#}
-{#                <th>Nr</th>#}
-{#                <th>Sock name</th>#}
-{#                <th>Description</th>#}
-{#                <th>Price</th>#}
-{#                <th>Actions</th>#}
+        <div id="chartContainer" style="height: 200px; width: 50%;"></div>
+
+{#        <canvas id="myChart"></canvas>#}
 {##}
-{#              </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#            {%  set i = 1 %}#}
-{#            {% for sock in socks %}#}
-{#              <tr>#}
-{#                <td>{{ i }}</td>#}
-{#                <td>{{ sock.name }}</td>#}
-{#                {% if sock.description|length > 30 %}#}
-{#                    <td>{{ sock.description|truncate(30) }}</td>#}
-{#                {% else %}#}
-{#                    <td>{{ sock.description}}</td>#}
-{#                {% endif %}#}
-{#                <td>{{ sock.price }}$</td>#}
-{#
-{#              </tr>#}
-{#            {%  set i = i + 1 %}#}
-{#            {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
+{#        <script src="{{ url_for('static', filename='js/chart.js') }}"></script>#}
+
+
         {% endblock %}
