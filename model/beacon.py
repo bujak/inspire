@@ -6,16 +6,17 @@ class Beacon():
         self.pick = pick
 
     @staticmethod
-    def add_pick(beacon_id, user_id):
-        query = """SELECT * FROM picks WHERE beacon_id = (?)"""
-        param = [beacon_id]
+    def add_pick(beacon_id, email):
+        query = """SELECT * FROM picks WHERE uid = ? AND email = ?"""
+        param = [beacon_id, email]
 
         if not sql.query(query, param):
-            query = """INSERT INTO picks (user_id, beacon_id, amount) VALUES (?, ?, ?)"""
-            values = [user_id, beacon_id, 1]
-            sql.query(query,values)
+            query = """INSERT INTO picks (email, uid, amount) VALUES (?, ?, ?)"""
+            values = [email, beacon_id, 1]
+            sql.query(query, values)
         else:
-            query = """UPDATE picks SET amount = amount + 1 WHERE beacon_id =(?)"""
+            query = """UPDATE picks SET amount = amount + 1 WHERE uid =(?)"""
+            param = [beacon_id]
             sql.query(query, param)
         return
 

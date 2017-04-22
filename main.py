@@ -24,13 +24,13 @@ def start():
     print(idx)
     session['user'] = user
     print(session['user'])
-    return "user"
+    return
 
 
 @app.route('/receive', methods=["POST"])
 def receive():
     pick = request.get_json()
-    Beacon.add_pick(pick)
+    Beacon.add_pick(pick["beacon"], pick["mail"])
     return render_template("index.html")
 
 
