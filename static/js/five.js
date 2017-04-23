@@ -13,12 +13,12 @@ window.onload = function () {
 			startAngle:100,
 			toolTipContent: "{label}: {y} - <strong>#percent%</strong>",
 			indexLabel: "{label} #percent%",
-			dataPoints: [
-				{  label: "Fiat126", y: 123 },
-				{  y: 205, label: "Ferrari" },
-				{  y: 198, label: "Audi" }
+			dataPoints: arr
+				// {  label: "Fiat126", y: 123 },
+				// {  y: 205, label: "Ferrari" },
+				// {  y: 198, label: "Audi" }
 
-			]
+			
 		}
 		]
 	});
@@ -37,12 +37,13 @@ window.onload = function () {
 			startAngle:20,
 			toolTipContent: "{label}: {y} - <strong>#percent%</strong>",
 			indexLabel: "{label} #percent%",
-			dataPoints: [
-				{  label: "Fiat126", y: 6 },
-				{  y: 3, label: "Ferrari" },
-				{  y: 1, label: "Audi" }
+			dataPoints:
+				arr2
+				// {  label: "Fiat126", y: 6 },
+				// {  y: 3, label: "Ferrari" },
+				// {  y: 1, label: "Audi" }
 
-			]
+
 		}
 		]
 	});
