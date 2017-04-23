@@ -1,41 +1,65 @@
 
 {% extends 'head.html' %}
-        {% block content %}
-        <div class="jumbotron">
-            <h1>Product statistics for {{ name }}</h1>
+{% block head %}
+      <script type="text/javascript" src="{{ url_for('static', filename='js/five.js')}}"> </script>
 
-        </div>
-         <div class="btn-group">
+{% endblock %}
+
+        {% block content %}
+        <div class="jumbotron" style="padding-top: 0px">
+            <h1>Global statistics               <div class="btn-group">
             <a href="{{ url_for('show_statistics', name=name) }}" class="btn btn-lg btn-primary">
                 Back to main panel</a>
+        </div></h1>
+
         </div>
-{#            <table class="table table-striped">#}
-{#            <thead>#}
-{#              <tr>#}
-{#                <th>Nr</th>#}
-{#                <th>Sock name</th>#}
-{#                <th>Description</th>#}
-{#                <th>Price</th>#}
-{#                <th>Actions</th>#}
-{##}
-{#              </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#            {%  set i = 1 %}#}
-{#            {% for sock in socks %}#}
-{#              <tr>#}
-{#                <td>{{ i }}</td>#}
-{#                <td>{{ sock.name }}</td>#}
-{#                {% if sock.description|length > 30 %}#}
-{#                    <td>{{ sock.description|truncate(30) }}</td>#}
-{#                {% else %}#}
-{#                    <td>{{ sock.description}}</td>#}
-{#                {% endif %}#}
-{#                <td>{{ sock.price }}$</td>#}
+<script type="text/javascript">
+var parsed = {{ amount | safe }};
+var arr = [];
+for(var x in parsed){
+  arr.push(parsed[x]); }
+
+var parsed2 = {{ time | safe }};
+var arr2 = [];
+for(var y in parsed2){
+  arr2.push(parsed2[y]); }
+
+console.log(arr);
+</script>
+            <div
+        <div id="chartContainer" style="height: 300px;" class="col-lg-6 col-6"></div>
+        <div id="chartContainer2" style="height: 300px;" class="col-lg-6 col-6"></div>
+
+            <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nr</th>
+                <th>Product name</th>
+                <th>Clients amount</th>
+                <th>Overall time </th>
+
+              </tr>
+            </thead>
+            <tbody>
+            {%  set i = 1 %}
+            {% for prod in products %}
+              <tr>
+                <td>{{ i }}</td>
+                <td>{{ prod[0] }}</td>
+                <td>{{ prod[1] }}</td>
+                <td>{{ prod[2] }} min </td>
+
+              </tr>
+            {%  set i = i + 1 %}
+            {% endfor %}
+            </tbody>
+        </table>
 {#
-{#              </tr>#}
-{#            {%  set i = i + 1 %}#}
-{#            {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
+
+
+  <canvas id="myChart"></canvas>#}
+{##}
+{#        <script src="{{ url_for('static', filename='js/chart.js') }}"></script>#}
+
+
         {% endblock %}

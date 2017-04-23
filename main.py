@@ -7,7 +7,6 @@ import ast
 
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 
-
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -85,18 +84,48 @@ def show_statistics(name):
 
 @app.route('/business/<name>/global')
 def global_statistics(name):
-    client_amount = 1
-    return render_template("global.html", name=name)
+    clients = User.get_clients()
+    amount = []
+    time = []
+    for client in clients:
+        amount.append({'label': client[0], 'y': client[2]})
+        time.append({'label': client[0], 'y': client[1]})
+    amount1 = json.dumps(amount)
+    time2 = json.dumps(time)
+
+    return render_template("global.html", name=name, clients=clients, amount=amount1, time=time2)
 
 
 @app.route('/business/<name>/client')
 def client_statistics(name):
-    return render_template("client.html", name=name)
+    clients = User.sigle_client()
+    amount = []
+    time = []
+    for client in clients:
+        amount.append({'label': client[0], 'y': client[1]})
+        time.append({'label': client[0], 'y': client[2]})
+    amount1 = json.dumps(amount)
+    time2 = json.dumps(time)
+
+    return render_template("client.html", name=name, clients=clients, amount=amount1, time=time2)
 
 
 @app.route('/business/<name>/product')
 def product_statistics(name):
-    return render_template("product.html", name=name)
+    products = Beacon.get_products()
+
+    suma_t = Beacon.get_sum()[0][0]
+    suma_a = Beacon.get_sum_a()[0][0]
+    print(suma_a)
+    amount = []
+    time = []
+    for prod in products:
+        amount.append({'label': prod[0], 'y': prod[1]})
+        time.append({'y': prod[2], 'label': prod[0]})
+    amount1 = json.dumps(amount)
+    time2 = json.dumps(time)
+    print(amount1)
+    return render_template("product.html", name=name, products=products, amount=amount1, time=time2)
 
 
 @app.route('/buttonsend/',  methods=["POST"])
@@ -106,4 +135,4 @@ def send_to():
     return render_template("test.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", debug=True)
