@@ -3,8 +3,10 @@ from model.beacon import Beacon
 import os
 from send_mail import send_mail
 import json
+import ast
 
-from flask import Flask, render_template, request, redirect, url_for, session
+
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 
 
 app = Flask(__name__)
@@ -23,23 +25,36 @@ def start():
 
 @app.route('/<string:email>/mylist')
 def mylist(email):
+    products = []
+    details = []
     picks = User.get_picks_by_email(email)
     for pick in picks:
-        print(pick[0])
-    return render_template("mylist.html", picks=picks)
+        print(pick[0], pick[1], pick[2], pick[3])
+
+    for product in picks:
+        if product[3] not in products:
+            products.append(product[3])
+
+
+        for cos in products:
+            details.append(ast.literal_eval(Beacon.get_product_details(cos)))
+        print(products  )
+    return render_template("mylist.html", picks=picks, details=details)
+
 
 
 @app.route('/receive', methods=["POST"])
 def receive():
     pick = request.get_json()
     Beacon.add_pick(pick["beacon"], pick["mail"])
-    return render_template("index.html")
+    import ast
+    return jsonify(ast.literal_eval(Beacon.get_beacon_by_uid(pick["beacon"])))
 
 
 @app.route('/<string:email>/<name>/send')
 def send(email, name):
     send_mail(email)
-    return redirect(url_for('show_statistics', name=name))
+    return redirect(url_for('client_statistics', name=name))
 
 
 @app.route('/')
@@ -102,6 +117,13 @@ def product_statistics(name):
     time2 = json.dumps(time)
     print(amount1)
     return render_template("product.html", name=name, products=products, amount=amount1, time=time2)
+
+
+@app.route('/buttonsend/',  methods=["POST"])
+def send_to():
+    send_mail("pgurdek@gmail.com")
+
+    return render_template("test.html")
 
 
 if __name__ == "__main__":

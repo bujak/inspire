@@ -24,9 +24,21 @@ class Beacon():
         return
 
     @staticmethod
-    def get_by_id(beacon_id):
-        query = """SELECT """
-        return
+    def get_product_details(product_name):
+        query = """SELECT product_details.details FROM product_details where product = ?;"""
+
+
+        value = [product_name]
+
+        details = sql.query(query, value)
+        return details[0][0]
+
+    @staticmethod
+    def get_beacon_by_uid(beacon_uid):
+        query = """SELECT product_details.details FROM product_details JOIN beacons on product_details.product = beacons.product where beacons.uid = ?; """
+        value = [beacon_uid]
+        return sql.query(query, value)[0][0]
+
 
     @staticmethod
     def get_product_amount():
@@ -66,4 +78,5 @@ class Beacon():
         query = """SELECT COUNT(DISTINCT email) from picks"""
         suma = sql.query(query)
         return suma
+
 
