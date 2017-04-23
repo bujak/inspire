@@ -30,6 +30,20 @@ console.log(arr);
         <div id="chartContainer" style="height: 300px;" class="col-lg-6 col-6"></div>
         <div id="chartContainer2" style="height: 300px;" class="col-lg-6 col-6"></div>
 
+        <script type="text/javascript">
+            var parsed = {{ amount | safe }};
+            var arr = [];
+            for(var x in parsed){
+              arr.push(parsed[x]); }
+
+            var parsed2 = {{ time | safe }};
+            var arr2 = [];
+            for(var y in parsed2){
+              arr2.push(parsed2[y]); }
+
+            console.log(arr);
+        </script>
+
             <table class="table table-striped">
             <thead>
               <tr>

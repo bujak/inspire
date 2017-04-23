@@ -114,9 +114,6 @@ def client_statistics(name):
 def product_statistics(name):
     products = Beacon.get_products()
 
-    suma_t = Beacon.get_sum()[0][0]
-    suma_a = Beacon.get_sum_a()[0][0]
-    print(suma_a)
     amount = []
     time = []
     for prod in products:
@@ -135,4 +132,4 @@ def send_to():
     return render_template("test.html")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(debug=True)
