@@ -27,3 +27,43 @@ class Beacon():
     def get_by_id(beacon_id):
         query = """SELECT """
         return
+
+    @staticmethod
+    def get_product_amount():
+        query = """SELECT beacons.product, SUM(picks.amount)
+                    FROM picks 
+                    JOIN beacons ON beacons.uid = picks.uid
+                    GROUP BY picks.uid;"""
+        products = sql.query(query)
+        return products
+
+    @staticmethod
+    def get_product_amount():
+        query = """SELECT beacons.product, COUNT(DISTINCT picks.email)
+                    FROM picks 
+                    JOIN beacons ON beacons.uid = picks.uid
+                    GROUP BY picks.uid;"""
+        products = sql.query(query)
+        return products
+
+    @staticmethod
+    def get_products():
+        query = """SELECT beacons.product, COUNT(DISTINCT picks.email), SUM(picks.amount)
+                  FROM picks 
+                  JOIN beacons ON beacons.uid = picks.uid
+                  GROUP BY picks.uid;"""
+        products = sql.query(query)
+        return products
+
+    @staticmethod
+    def get_sum():
+        query = """SELECT SUM(amount) from picks;"""
+        suma = sql.query(query)
+        return suma\
+
+    @staticmethod
+    def get_sum_a():
+        query = """SELECT COUNT(DISTINCT email) from picks"""
+        suma = sql.query(query)
+        return suma
+
