@@ -18,7 +18,7 @@ window.onload = function () {
 				// {  y: 205, label: "Ferrari" },
 				// {  y: 198, label: "Audi" }
 
-			
+
 		}
 		]
 	});

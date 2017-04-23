@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
 
-@app.route('/')
+
 def index():
     return render_template("index.html")
 
@@ -49,6 +49,7 @@ def send(email):
     return "Email send"
 
 
+@app.route('/')
 @app.route('/business/login', methods=['POST', 'GET'])
 def b_login():
     if request.method == 'GET':

@@ -38,6 +38,7 @@ for(var y in parsed2){
                 <th>Client</th>
                 <th>Time near all products</th>
                 <th>Amount of products viewed by client</th>
+                <th>Send email</th>
 
               </tr>
             </thead>
@@ -49,7 +50,8 @@ for(var y in parsed2){
                 <td>{{ client[0] }} </td>
                 <td>{{ client[1] }} min</td>
                 <td>{{ client[2] }}  </td>
-
+                <td><a href="{{ url_for('send', email=client[0] ) }}" class="btn btn-md btn-danger">
+                Send email to client</a>  </td>
               </tr>
             {%  set i = i + 1 %}
             {% endfor %}
