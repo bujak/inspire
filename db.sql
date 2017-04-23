@@ -8,6 +8,34 @@ INSERT INTO `users` VALUES (1,'piggy');
 INSERT INTO `users` VALUES (2,'lolo');
 INSERT INTO `users` VALUES (3,'hesus');
 INSERT INTO `users` VALUES (4,'noname');
+
+CREATE TABLE `product_details` (
+	`id`	INTEGER,
+	`product`	TEXT,
+	`details`	TEXT,
+	PRIMARY KEY(`id`)
+);
+INSERT INTO `product_details` VALUES (1,'Audi','{"price": "10k$", 
+"name":"Audi","engine":"168-hp, 2.5-liter I-4 (regular gas)",
+"transmission":"2-speed CVT w/OD and auto-manual, 6-speed manual w/OD",
+"combined_mpg":"27",
+"city_mpg":"27",
+"highway_mpg":"37",
+}');
+INSERT INTO `product_details` VALUES (2,'Fiat','{"price": "150k$","name":"Fiat","engine":"185-hp, 2.4-liter I-4 (regular gas)",
+"transmission":"2-speed CVT w/OD",
+"combined_mpg":"25",
+"city_mpg":"22",
+"highway_mpg":"11"}');
+INSERT INTO `product_details` VALUES (3,'Ferrari','{	"price": "250k$"
+	"name":"Ferrari",
+	"engine":"196-hp, 2.5-liter I-4 (regular gas)",
+	"transmission":"6-speed automatic w/OD",
+	"combined_mpg":"25",
+	"city_mpg":"22",
+	"highway_mpg":"31",
+}');
+
 CREATE TABLE "picks" (
 	`id`	INTEGER,
 	`email`	INTEGER NOT NULL,
