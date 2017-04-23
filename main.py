@@ -98,10 +98,12 @@ def client_statistics(name):
 def product_statistics(name):
     return render_template("product.html", name=name)
 
-#
-# @app.route('/test')
-# def test():
-#     return render_template("test.html")
+
+@app.route('/buttonsend/',  methods=["POST"])
+def send_to():
+    send_mail("pgurdek@gmail.com")
+
+    return render_template("test.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
