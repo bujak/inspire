@@ -19,14 +19,12 @@ def send_mail(email):
     msg['To'] = you
 
     # Create the body of the message (a plain-text and an HTML version).
-    text = "O kurwens ale super email z hackatonu"
-    html = """\
+    text = "Znizki i promocje wybrane dla Ciebie"
+    html = """
     <html>
       <head></head>
       <body>
-        <p>Joł<br>
-           Co tam co tam?
-        </p>
+        <img src="http://www.peleton.pl/wp-content/uploads/2016/04/promocja-RED.png" >
       </body>
     </html>
     """

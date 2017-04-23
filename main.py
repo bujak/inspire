@@ -4,16 +4,11 @@ import os
 from send_mail import send_mail
 import json
 
-from flask import Flask, render_template, request, redirect, url_for, session,jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
-
-
-
-def index():
-    return render_template("index.html")
 
 
 @app.route('/start', methods=["POST"])
@@ -21,10 +16,8 @@ def start():
     email = request.get_json()
     user = {'email': email["mail"]}
     idx = User.make_user(user)
-    # user["id"] = idx
+
     print(idx)
-    # session['user'] = user
-    # print(session['user'])
     return ""
 
 
@@ -43,10 +36,10 @@ def receive():
     return render_template("index.html")
 
 
-@app.route('/<string:email>/send')
-def send(email):
+@app.route('/<string:email>/<name>/send')
+def send(email, name):
     send_mail(email)
-    return "Email send"
+    return redirect(url_for('show_statistics', name=name))
 
 
 @app.route('/')
@@ -110,10 +103,6 @@ def product_statistics(name):
     print(amount1)
     return render_template("product.html", name=name, products=products, amount=amount1, time=time2)
 
-
-@app.route('/test')
-def test():
-    return render_template("test.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
