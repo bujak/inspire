@@ -1,6 +1,8 @@
 import model.sql as sql
 
 
+
+
 class User:
 
     @staticmethod
@@ -16,8 +18,9 @@ class User:
 
     @staticmethod
     def get_picks_by_email(email):
-        query = """SELECT picks.id, picks.email, picks.amount, beacons.product FROM picks  JOIN beacons on picks.uid = beacons.uid WHERE email = ? ORDER BY picks.amount DESC """
+        query = """SELECT picks.id, picks.email, picks.amount, beacons.product FROM picks  JOIN beacons on picks.uid = beacons.uid WHERE email = ? ORDER BY picks.amount"""
         value = [email]
+        a = sql.query(query, value)
         return sql.query(query, value)
 
 
